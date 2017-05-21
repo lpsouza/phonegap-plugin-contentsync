@@ -855,6 +855,7 @@ public class Sync extends CordovaPlugin {
         ZipFile zip = null;
         boolean anyEntries = false;
 
+        Log.i("PASSOU AQUI");
         return false;
 
         try {
