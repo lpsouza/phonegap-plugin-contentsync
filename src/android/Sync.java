@@ -133,7 +133,7 @@ public class Sync extends CordovaPlugin {
             final String target = args.getString(1);
             final CallbackContext finalContext = callbackContext;
 
-            boolean canUnzip = true;
+            boolean canUnzip = false;
 
             if (canUnzip) {
                 cordova.getThreadPool().execute(new Runnable() {
