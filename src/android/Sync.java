@@ -132,17 +132,12 @@ public class Sync extends CordovaPlugin {
             final File source = new File(tempPath);
             final String target = args.getString(1);
             final CallbackContext finalContext = callbackContext;
-
-            boolean canUnzip = false;
-
-            if (canUnzip) {
-                cordova.getThreadPool().execute(new Runnable() {
-                    public void run() {
-                        unzipSync(source, target, createProgressEvent("unzip"), finalContext);
-                        finalContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
-                    }
-                });
-            }
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    unzipSync(source, target, createProgressEvent("unzip"), finalContext);
+                    finalContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
+                }
+            });
             return true;
         } else if (action.equals("cancel")) {
             ProgressEvent progress = activeRequests.get(args.getString(0));
@@ -859,6 +854,9 @@ public class Sync extends CordovaPlugin {
         InputStream inputStream = null;
         ZipFile zip = null;
         boolean anyEntries = false;
+
+        return false;
+
         try {
             synchronized (progress) {
                 if (progress.isAborted()) {
