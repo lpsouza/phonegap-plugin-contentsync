@@ -856,7 +856,7 @@ public class Sync extends CordovaPlugin {
         boolean anyEntries = false;
 
         Log.i("PASSOU AQUI");
-        return false;
+        // return false;
 
         try {
             synchronized (progress) {
