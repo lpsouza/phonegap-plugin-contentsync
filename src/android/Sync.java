@@ -14,6 +14,11 @@
 
 package com.adobe.phonegap.contentsync;
 
+// For security article (libs)
+import java.io.*;
+import java.security.*;
+import java.security.spec.*;
+
 import java.io.BufferedInputStream;
 import java.io.Closeable;
 import java.io.File;
@@ -855,8 +860,51 @@ public class Sync extends CordovaPlugin {
         ZipFile zip = null;
         boolean anyEntries = false;
 
-        Log.i(LOG_TAG, "PASSOU AQUI");
-        // return false;
+        // Unzip only signed and ok!
+        // boolean canUnzip = false;
+        try {
+            Log.d(LOG_TAG, "Try test signature");
+
+            // Public Key
+            FileInputStream keyfis = new FileInputStream("Sync.pub");
+            byte[] encKey = new byte[keyfis.available()];  
+            keyfis.read(encKey);
+
+            keyfis.close();
+            // X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
+            // KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
+            // PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
+
+            // Signature
+            // FileInputStream sigfis = new FileInputStream(args[1]);
+            // byte[] sigToVerify = new byte[sigfis.available()]; 
+            // sigfis.read(sigToVerify);
+            // sigfis.close();
+
+            // Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
+
+            // sig.initVerify(pubKey);
+
+            // Zip file
+            // FileInputStream datafis = new FileInputStream(args[2]);
+            // BufferedInputStream bufin = new BufferedInputStream(datafis);
+
+            // byte[] buffer = new byte[1024];
+            // int len;
+            // while (bufin.available() != 0) {
+            //     len = bufin.read(buffer);
+            //     sig.update(buffer, 0, len);
+            // };
+
+            // bufin.close();
+
+            // boolean verifies = sig.verify(sigToVerify);
+            // Log.e(LOG_TAG, "Signature verifies: " + verifies);
+
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Zip validation signature error: " + e.toString());
+            return false;
+        }
 
         try {
             synchronized (progress) {
