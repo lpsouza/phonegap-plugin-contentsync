@@ -864,7 +864,7 @@ public class Sync extends CordovaPlugin {
         // boolean canUnzip = false;
         try {
             Log.d(LOG_TAG, "Try test signature");
-            AssetManager assetManager = getBaseContext().getAssets();
+            AssetManager assetManager = webView.getBaseContext().getAssets();
 
             // Public Key
             FileInputStream keyfis = new FileInputStream(assetManager.open("Sync.pub"));
