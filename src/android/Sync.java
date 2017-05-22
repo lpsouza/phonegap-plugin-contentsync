@@ -871,9 +871,9 @@ public class Sync extends CordovaPlugin {
             keyfis.read(encKey);
 
             keyfis.close();
-            // X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-            // KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
-            // PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
+            X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
+            KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
+            PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 
             // Signature
             // FileInputStream sigfis = new FileInputStream(args[1]);
