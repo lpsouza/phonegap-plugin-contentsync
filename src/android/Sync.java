@@ -866,7 +866,7 @@ public class Sync extends CordovaPlugin {
             Log.d(LOG_TAG, "Try test signature");
 
             // Public Key
-            FileInputStream keyfis = new FileInputStream("Sync.pub");
+            FileInputStream keyfis = new FileInputStream("res/values/Sync.pub");
             byte[] encKey = new byte[keyfis.available()];  
             keyfis.read(encKey);
 
