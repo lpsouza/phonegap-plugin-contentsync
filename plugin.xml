@@ -21,7 +21,7 @@
       </feature>
     </config-file>
     <source-file src="src/android/Sync.java" target-dir="src/com/adobe/phonegap/contentsync"/>
-    <resource-file src="src/android/app.crt" target="assets/app.crt" />
+    <resource-file src="src/android/app.pub" target="assets/app.pub" />
   </platform>
   <platform name="browser">
     <js-module src="src/browser/Sync.js" name="Sync">

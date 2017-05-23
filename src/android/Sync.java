@@ -866,13 +866,13 @@ public class Sync extends CordovaPlugin {
             Log.d(LOG_TAG, "Try test signature");
 
             // Public Key
-            InputStream keyfis = webView.getContext().getAssets().open("app.crt");
+            InputStream keyfis = webView.getContext().getAssets().open("app.pub");
             byte[] encKey = new byte[keyfis.available()];  
             keyfis.read(encKey);
 
             keyfis.close();
             X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            KeyFactory keyFactory = KeyFactory.getInstance("SHA256");
             PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 
             // Signature
