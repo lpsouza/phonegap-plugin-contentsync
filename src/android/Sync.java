@@ -883,7 +883,8 @@ public class Sync extends CordovaPlugin {
 
             Signature sig = Signature.getInstance("SHA256withRSA");
 
-            sig.initVerify(pubKey);
+            // sig.initVerify(pubKey);
+            sig.initVerify(encKey);
 
             // Zip file
             FileInputStream datafis = new FileInputStream(targetFile.getAbsolutePath());
