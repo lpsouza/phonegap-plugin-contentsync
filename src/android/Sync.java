@@ -876,14 +876,14 @@ public class Sync extends CordovaPlugin {
             // PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 
             // Signature
-            // FileInputStream sigfis = new FileInputStream(args[1]);
-            // byte[] sigToVerify = new byte[sigfis.available()]; 
-            // sigfis.read(sigToVerify);
-            // sigfis.close();
+            InputStream sigfis = new URL("https://contentsync-pf.azurewebsites.net/www.zip.sig").openStream();
+            byte[] sigToVerify = new byte[sigfis.available()]; 
+            sigfis.read(sigToVerify);
+            sigfis.close();
 
-            // Signature sig = Signature.getInstance("SHA256withRSA");
+            Signature sig = Signature.getInstance("SHA256withRSA");
 
-            // sig.initVerify(pubKey);
+            sig.initVerify(pubKey);
 
             // Zip file
             FileInputStream datafis = new FileInputStream(targetFile.getAbsolutePath());
