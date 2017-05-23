@@ -871,9 +871,9 @@ public class Sync extends CordovaPlugin {
             keyfis.read(encKey);
 
             keyfis.close();
-            //X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            PublicKey pubKey = keyFactory.generatePublic(encKey);
+            // X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
+            // KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            // PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 
             // Signature
             // FileInputStream sigfis = new FileInputStream(args[1]);
@@ -881,13 +881,13 @@ public class Sync extends CordovaPlugin {
             // sigfis.read(sigToVerify);
             // sigfis.close();
 
-            // Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
+            // Signature sig = Signature.getInstance("SHA256withRSA");
 
             // sig.initVerify(pubKey);
 
             // Zip file
-            // FileInputStream datafis = new FileInputStream(args[2]);
-            // BufferedInputStream bufin = new BufferedInputStream(datafis);
+            FileInputStream datafis = new FileInputStream(targetFile.getAbsolutePath());
+            BufferedInputStream bufin = new BufferedInputStream(datafis);
 
             // byte[] buffer = new byte[1024];
             // int len;
