@@ -866,14 +866,14 @@ public class Sync extends CordovaPlugin {
             Log.d(LOG_TAG, "Try test signature");
 
             // Public Key
-            InputStream keyfis = webView.getContext().getAssets().open("app.pub");
+            InputStream keyfis = webView.getContext().getAssets().open("app.crt");
             byte[] encKey = new byte[keyfis.available()];  
             keyfis.read(encKey);
 
             keyfis.close();
-            // X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-            // KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            // PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
+            X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
+            KeyFactory keyFactory = KeyFactory.getInstance("SHA256withRSA");
+            PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 
             // Signature
             InputStream sigfis = new URL("https://contentsync-pf.azurewebsites.net/www.zip.sig").openStream();
@@ -883,8 +883,7 @@ public class Sync extends CordovaPlugin {
 
             Signature sig = Signature.getInstance("SHA256withRSA");
 
-            // sig.initVerify(pubKey);
-            sig.initVerify(encKey);
+            sig.initVerify(pubKey);
 
             // Zip file
             FileInputStream datafis = new FileInputStream(targetFile.getAbsolutePath());
