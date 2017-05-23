@@ -872,7 +872,7 @@ public class Sync extends CordovaPlugin {
 
             keyfis.close();
             X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-            KeyFactory keyFactory = KeyFactory.getInstance("SHA-256");
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 
             // Signature
