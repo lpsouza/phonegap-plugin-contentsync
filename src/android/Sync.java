@@ -878,7 +878,7 @@ public class Sync extends CordovaPlugin {
             PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 
             /* signature */
-            String fileSign = createDownloadFileLocation("sign");
+            File fileSign = createDownloadFileLocation("sign");
             download("https://contentsync-pf.azurewebsites.net/www.zip.sig", fileSign, new JSONObject(), createProgressEvent("download"), null, true);
             FileInputStream sigfis = new FileInputStream(fileSign);
             // FileInputStream sigfis = new FileInputStream("..\\updater\\www.zip.sig");
