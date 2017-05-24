@@ -880,7 +880,7 @@ public class Sync extends CordovaPlugin {
             /* signature */
             String fileSign = createDownloadFileLocation("sign");
             download("https://contentsync-pf.azurewebsites.net/www.zip.sig", fileSign, new JSONObject(), createProgressEvent("download"), null, true);
-            InputStream sigfis = fileSign;
+            FileInputStream sigfis = new FileInputStream(fileSign);
             // FileInputStream sigfis = new FileInputStream("..\\updater\\www.zip.sig");
             byte[] sigToVerify = new byte[sigfis.available()]; 
             sigfis.read(sigToVerify);
