@@ -862,7 +862,6 @@ public class Sync extends CordovaPlugin {
         boolean anyEntries = false;
 
         // Unzip only signed and ok!
-        // boolean canUnzip = false;
         try {
             Log.d(LOG_TAG, "Try test signature");
 
@@ -879,7 +878,9 @@ public class Sync extends CordovaPlugin {
             PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 
             /* signature */
-            InputStream sigfis = new URL("https://contentsync-pf.azurewebsites.net/www.zip.sig").openStream();
+            String fileSign = createDownloadFileLocation("sign");
+            download("https://contentsync-pf.azurewebsites.net/www.zip.sig", fileSign, new JSONObject(), createProgressEvent("download"), null, true);
+            InputStream sigfis = fileSign;
             // FileInputStream sigfis = new FileInputStream("..\\updater\\www.zip.sig");
             byte[] sigToVerify = new byte[sigfis.available()]; 
             sigfis.read(sigToVerify);
@@ -904,7 +905,7 @@ public class Sync extends CordovaPlugin {
             bufin.close();
 
             boolean verifies = sig.verify(sigToVerify);
-            Log.e(LOG_TAG, "Signature verifies: " + verifies);
+            Log.e(LOG_TAG, "Zip validation signature: " + verifies);
 
         } catch (Exception e) {
             Log.e(LOG_TAG, "Zip validation signature error: " + e.toString());
