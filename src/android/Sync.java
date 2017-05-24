@@ -875,7 +875,7 @@ public class Sync extends CordovaPlugin {
             keyfis.close();
 
             X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-            KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
+            KeyFactory keyFactory = KeyFactory.getInstance("DSA");
             PublicKey pubKey = keyFactory.generatePublic(pubKeySpec);
 
             /* signature */
@@ -885,7 +885,7 @@ public class Sync extends CordovaPlugin {
             sigfis.read(sigToVerify);
             sigfis.close();
 
-            Signature sig = Signature.getInstance("SHA1withDSA", "SUN");
+            Signature sig = Signature.getInstance("SHA1withDSA");
             sig.initVerify(pubKey);
 
             /* File */
