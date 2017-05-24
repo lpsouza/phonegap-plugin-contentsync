@@ -889,6 +889,7 @@ public class Sync extends CordovaPlugin {
             sig.initVerify(pubKey);
 
             /* File */
+            Log.i(LOG_TAG, targetFile.getAbsolutePath());
             FileInputStream datafis = new FileInputStream(targetFile.getAbsolutePath());
             // FileInputStream datafis = new FileInputStream("..\\updater\\www.zip");
             BufferedInputStream bufin = new BufferedInputStream(datafis);
