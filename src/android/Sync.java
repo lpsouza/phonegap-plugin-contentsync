@@ -905,7 +905,11 @@ public class Sync extends CordovaPlugin {
             bufin.close();
 
             boolean verifies = sig.verify(sigToVerify);
-            Log.i(LOG_TAG, "Zip validation signature: " + verifies);
+            Log.w(LOG_TAG, "Zip validation signature: " + verifies);
+
+            if (!verifies) {
+                return false;
+            }
 
         } catch (Exception e) {
             Log.e(LOG_TAG, "Zip validation signature error: " + e.toString());
